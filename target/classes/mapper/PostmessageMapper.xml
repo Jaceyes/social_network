@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjiet.mapper.PostmessageMapper">
+    <insert id="insertPostmessage" parameterType="com.zjiet.entity.Postmessage">
+        insert into postmessage(context,username,likenum,sharenum,createtime) values(#{context},#{username},#{likenum},#{sharenum},#{createtime})
+    </insert>
+    <select id="findAllPostmessage" resultType="com.zjiet.entity.Postmessage">
+        select * from postmessage
+    </select>
+    <delete id="deletePostmessage">
+        delete from postmessage where postmessageid=#{postmessageid}
+    </delete>
+    <update id="addlikenum">
+        update postmessage set likenum=likenum+1 where postmessageid=#{postmessageid}
+    </update>
+    <update id="addsharenum">
+        update postmessage set sharenum=sharenum+1 where postmessageid=#{postmessageid}
+    </update>
+    <select id="findByUsername" resultType="integer">
+        select postmessageid from postmessage where username=#{username} order by postmessageid desc limit 1
+    </select>
+</mapper>
